@@ -24,7 +24,7 @@ class Day02() {
                 sum += gameID
             }
         }
-        return  sum
+        return sum
     }
 
     fun checkPartOne(input: List<String>, expected: Int) {
@@ -53,7 +53,7 @@ class Day02() {
             }
             sum += red * green * blue
         }
-        return  sum
+        return sum
     }
 
     fun checkPartTwo(input: List<String>, expected: Int) {

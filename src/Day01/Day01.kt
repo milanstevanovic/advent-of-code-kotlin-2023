@@ -1,5 +1,4 @@
 package Day01
-import Day02.Day02
 import readInput
 
 class Day01() {
