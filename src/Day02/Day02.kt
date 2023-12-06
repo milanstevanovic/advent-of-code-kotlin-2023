@@ -1,10 +1,9 @@
 package Day02
-import Day01.Day01
 import readInput
 
-class Day02(private val input: List<String>, private val testOneInput: List<String>, private val testTwoInput: List<String>) {
+class Day02() {
 
-    fun solvePartOne(lines: List<String> = input): Int {
+    fun solvePartOne(lines: List<String>): Int {
         var sum = 0
         for (line in lines) {
             val gameID = line.substringAfter("Game ").substringBefore(":").trim().toInt()
@@ -28,14 +27,14 @@ class Day02(private val input: List<String>, private val testOneInput: List<Stri
         return  sum
     }
 
-    fun testPartOne(expected: Int = 8) {
-        val actual = solvePartOne(testOneInput)
+    fun checkPartOne(input: List<String>, expected: Int) {
+        val actual = solvePartOne(input)
         check(actual == expected) {
-            "Part One Test Failed: Expected $expected but got $actual"
+            "Part One Check Failed: Expected $expected but got $actual"
         }
     }
 
-    fun solvePartTwo(lines: List<String> = input): Int {
+    fun solvePartTwo(lines: List<String>): Int {
         var sum = 0
         for (line in lines) {
             val gameID = line.substringAfter("Game ").substringBefore(":").trim().toInt()
@@ -57,18 +56,21 @@ class Day02(private val input: List<String>, private val testOneInput: List<Stri
         return  sum
     }
 
-    fun testPartTwo(expected: Int = 2286) {
-        val actual = solvePartTwo(testTwoInput)
+    fun checkPartTwo(input: List<String>, expected: Int) {
+        val actual = solvePartTwo(input)
         check(actual == expected) {
-            "Part One Test Failed: Expected $expected but got $actual"
+            "Part Two Check Failed: Expected $expected but got $actual"
         }
     }
 }
 
 fun main() {
-    val day = Day02(readInput("Day02/input"), readInput("Day02/test1"), readInput("Day02/test2"))
-    println("Part One: ${day.solvePartOne()}")
-    println("Part Two: ${day.solvePartTwo()}")
-    day.testPartOne()
-    day.testPartTwo()
+    val input = readInput("Day02/input")
+    val day = Day02()
+    println("Part One Result: ${day.solvePartOne(input)}")
+    println("Part Two Result: ${day.solvePartTwo(input)}")
+    val test1 = readInput("Day02/test1")
+    day.checkPartOne(test1, 8)
+    val test2 = readInput("Day02/test2")
+    day.checkPartTwo(test2, 2286)
 }

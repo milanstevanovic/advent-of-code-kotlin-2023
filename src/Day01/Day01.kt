@@ -1,21 +1,22 @@
 package Day01
+import Day02.Day02
 import readInput
 
-class Day01(private val input: List<String>, private val testOneInput: List<String>, private val testTwoInput: List<String>) {
+class Day01() {
 
     private fun calibrationValue(line: String): Int {
         val digits = line.filter { it.isDigit() }
         return if (digits.isNotEmpty()) "${digits.first()}${digits.last()}".toInt() else 0
     }
 
-    fun solvePartOne(lines: List<String> = input): Int {
-        return lines.sumOf { calibrationValue(it) }
+    fun solvePartOne(input: List<String>): Int {
+        return input.sumOf { calibrationValue(it) }
     }
 
-    fun testPartOne(expected: Int = 142) {
-        val actual = solvePartOne(testOneInput)
+    fun checkPartOne(input: List<String>, expected: Int) {
+        val actual = solvePartOne(readInput("Day01/test1"))
         check(actual == expected) {
-            "Part One Test Failed: Expected $expected but got $actual"
+            "Part One Check Failed: Expected $expected but got $actual"
         }
     }
 
@@ -36,8 +37,8 @@ class Day01(private val input: List<String>, private val testOneInput: List<Stri
             substring(startingAt, (startingAt + len).coerceAtMost(length))
         }
 
-    fun solvePartTwo(lines: List<String> = input): Int {
-        return lines.sumOf { row: String ->
+    fun solvePartTwo(input: List<String>): Int {
+        return input.sumOf { row: String ->
             calibrationValue(
                 row.mapIndexedNotNull { index: Int, c: Char ->
                     if (c.isDigit()) c
@@ -50,18 +51,21 @@ class Day01(private val input: List<String>, private val testOneInput: List<Stri
         }
     }
 
-    fun testPartTwo(expected: Int = 281) {
-        val actual = solvePartTwo(testTwoInput)
+    fun checkPartTwo(input: List<String>, expected: Int) {
+        val actual = solvePartTwo(readInput("Day01/test2"))
         check(actual == expected) {
-            "Part Two Test Failed: Expected $expected but got $actual"
+            "Part Two Check Failed: Expected $expected but got $actual"
         }
     }
 }
 
 fun main() {
-    val day = Day01(readInput("Day01/input"), readInput("Day01/test1"), readInput("Day01/test2"))
-    println("Part One: ${day.solvePartOne()}")
-    println("Part Two: ${day.solvePartTwo()}")
-    day.testPartOne()
-    day.testPartTwo()
+    val input = readInput("Day01/input")
+    val day = Day01()
+    println("Part One Result: ${day.solvePartOne(input)}")
+    println("Part Two Result: ${day.solvePartTwo(input)}")
+    val test1 = readInput("Day01/test1")
+    day.checkPartOne(test1, 142)
+    val test2 = readInput("Day01/test2")
+    day.checkPartTwo(test2, 281)
 }
