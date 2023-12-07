@@ -3,6 +3,7 @@ package Day03
 import readInput
 
 class Day03 {
+    
     fun solvePartOne(input: List<String>): Int {
         val numbers = mutableSetOf<Int>()
         val height = input.size
